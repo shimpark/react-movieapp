@@ -11,18 +11,20 @@ function Detail() {
     const {id} = useParams();
     console.log(id);
 
-    var getMovie = async () => {
-        const json = await (
-            await fetch('https://yts.mx/api/v2/movie_details.json?movie_id=' + id)
-        ).json();
-        console.log(json);
-        setMovie(json.data.movie);
-        setLoading(false);
-    }
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const getMovie = async () => {
+      const json = await (
+          await fetch('https://yts.mx/api/v2/movie_details.json?movie_id=' + id)
+      ).json();
+      console.log(json);
+      setMovie(json.data.movie);
+      setLoading(false);
+    };
 
     useEffect(() => {
         getMovie();
-    }, []);
+    }, [getMovie], id);
 
     return (
         <div>
