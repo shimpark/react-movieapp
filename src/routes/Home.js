@@ -10,9 +10,11 @@ function Home() {
         setMovies(json.data.movies);
         setLoading(false);
     };
+
     useEffect(() => {
         getMovies();
     }, []);
+    
     return (
         <div className={styles.container}>
             {loading ? (
@@ -22,7 +24,14 @@ function Home() {
             ) : (
                 <div className={styles.movies}>
                     {movies.map((movie) => (
-                        <Movie key={movie.id} id={movie.id} year={movie.year} coverImg={movie.medium_cover_image} title={movie.title} summary={movie.summary} genres={movie.genres} />
+                        <Movie 
+                            key={movie.id} 
+                            id={movie.id} 
+                            year={movie.year} 
+                            coverImg={movie.medium_cover_image} 
+                            title={movie.title} 
+                            summary={movie.summary} 
+                            genres={movie.genres} />
                     ))}
                 </div>
             )}
